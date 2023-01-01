@@ -1,8 +1,7 @@
-import { Action, createReducer, createSelector, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 // import { Action } from '@ngrx/store/src/models';
 
 import { Message } from '../../../models/message';
-import { MessageAppState } from '../app.state';
 import {
   getMessage,
   getMessageSuccess,
@@ -103,9 +102,3 @@ export function messageReducer(state: MessageState, action: Action) {
   return reducer(state, action);
 }
 
-const getMessageFeatureState = (state: MessageAppState) => state.messages;
-
-export const getMessages = createSelector(
-  getMessageFeatureState,
-  (state: MessageState) => state.messages
-);

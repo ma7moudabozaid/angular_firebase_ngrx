@@ -11,7 +11,7 @@ import { Message } from '../models/message';
 import { select, Store } from '@ngrx/store';
 import { MessageAppState } from '../store/message/app.state';
 import { getMessage } from '../store/message/message/message.action';
-import { getMessages } from '../store/message/message/message.reducer';
+import { getMessages } from '../store/message/message/message.selector';
 
 @Component({
   selector: 'app-messages',
@@ -37,7 +37,7 @@ export class MessagesComponent implements OnInit {
     this.store.dispatch(getMessage());
     this.messages$ = this.store.pipe(select(getMessages));
     this.loading$ = this.store.select((store) => store.messages.loading);
-    console.log(this.messages$ )
+    console.log(this.messages$);
     // this.store.dispatch(getMessage());
     // this.messages = this.store.pipe(select('messages'));
 
