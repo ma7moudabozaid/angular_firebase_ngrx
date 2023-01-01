@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "onclickapp": {
+      "hosting": {
+        "messages": [
+          "onclickapp"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "onclickapp"
+  }
+}

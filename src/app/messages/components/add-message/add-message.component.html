@@ -1,0 +1,30 @@
+<form class="card-form" #msgForm="ngForm">
+  <h2 mat-dialog-title> Add New Message </h2>
+  <mat-dialog-content class="dialog-content">
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Name </mat-label>
+        <input matInput placeholder="name" [(ngModel)]="message.name" #name="ngModel" name="name" required>
+      </mat-form-field>
+      <span class="text-danger" *ngIf="msgForm.submitted && name.errors['required']">
+        Name is required
+      </span>
+    </div>
+
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label> Message</mat-label>
+        <textarea matInput placeholder="message" [(ngModel)]="message.message" name="message"
+          required></textarea>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" *ngIf="!isSubmit" (click)="saveMessage();msgForm.reset()"
+      [disabled]="msgForm.form.invalid">Add
+      Message</button>
+    <button mat-raised-button color="primary" *ngIf="isSubmit" disabled>
+      loading</button>
+    <button mat-raised-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>
