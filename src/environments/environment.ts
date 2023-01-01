@@ -12,7 +12,6 @@ export const environment = {
     storageBucket: "onclickapp.appspot.com",
     messagingSenderId: "322791228498",
     appId: "1:322791228498:web:2ccdb877f67551ba4d0b8b"
-
 }
 };
 
