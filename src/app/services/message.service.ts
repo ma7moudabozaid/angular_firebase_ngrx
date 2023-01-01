@@ -3,6 +3,7 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, Observable } from 'rxjs';
 import { Message } from '../models/message';
 
@@ -14,7 +15,7 @@ export class MessageService {
 
   messageCollection: AngularFirestoreCollection<Message>;
 
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private _snackBar: MatSnackBar) {
     this.messageCollection = afs.collection(this.dbMessage, (ref) =>
       ref.orderBy('createdAt', 'desc')
     );
@@ -42,7 +43,15 @@ export class MessageService {
     // console.log(employeeData);
     // console.log(message);
     console.log({ ...message });
-    return this.afs.collection('messages').add({ ...message });
+    return this.afs
+      .collection('messages')
+      .add({ ...message })
+      .then(() => {
+        this._snackBar.open('Created new item successfully!', 'Undo', {
+          duration: 3000,
+        });
+        console.log('Created new message successfully!');
+      });
   }
   // getMessage(): AngularFirestoreCollection<Message> {
   //   return this.messageCollection;
